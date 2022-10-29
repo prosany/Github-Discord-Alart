@@ -9,6 +9,7 @@ const log = require("./Helper/log");
 
 // Imports Routes
 const HomeRoute = require("./Routes/Home.Routes");
+const PlatformRoute = require("./Routes/Platform.Routes");
 
 // Initialize app
 const app = express();
@@ -26,6 +27,7 @@ app.use(
 
 // Initialize Routes
 app.use("/", HomeRoute);
+app.use("/platform", PlatformRoute);
 
 app.listen(PORT, () =>
   log(`Wow! Server is running on http://localhost:${PORT}`)
