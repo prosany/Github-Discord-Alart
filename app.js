@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const compression = require("compression");
+const createError = require("http-errors");
 
 // Custom Imports
 const { PORT } = require("./Config");
@@ -28,6 +29,19 @@ app.use(
 // Initialize Routes
 app.use("/", HomeRoute);
 app.use("/platform", PlatformRoute);
+
+// Error Handling
+app.use(async (req, res, next) => {
+  next(createError.NotFound("Path you're requested was not found"));
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    status: 0,
+    message: err.message,
+  });
+});
 
 app.listen(PORT, () =>
   log(`Wow! Server is running on http://localhost:${PORT}`)

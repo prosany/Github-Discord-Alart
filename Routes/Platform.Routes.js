@@ -5,8 +5,21 @@ router
   .route("/alert")
   .post((req, res) => {
     try {
-      console.log(req.body);
-      console.log(req.headers);
+      const {
+        repository,
+        updated_at,
+        language,
+        pusher,
+        sender,
+        commits,
+        modified,
+      } = req.body;
+      // repository.name
+      // pusher.name
+      // sender.avatar_url
+      // sender.login
+      // sender.followers_url
+      // commits.message
     } catch (error) {
       res.status(500).send({
         status: 0,
