@@ -6,7 +6,9 @@ const compression = require("compression");
 // Custom Imports
 const { PORT } = require("./Config");
 const log = require("./Helper/log");
-const { urlencoded } = require("express");
+
+// Imports Routes
+const HomeRoute = require("./Routes/Home.Routes");
 
 // Initialize app
 const app = express();
@@ -21,6 +23,9 @@ app.use(
     level: 6,
   })
 );
+
+// Initialize Routes
+app.use("/", HomeRoute);
 
 app.listen(PORT, () =>
   log(`Wow! Server is running on http://localhost:${PORT}`)
