@@ -20,6 +20,7 @@ router
       // sender.login
       // sender.followers_url
       // commits.message
+      console.log(req.body);
     } catch (error) {
       res.status(500).send({
         status: 0,
